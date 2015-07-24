@@ -1,0 +1,7 @@
+{
+  "name": "Phone Change",
+  "description": "Heroku Connect Sample App - Phone Change",
+  "repository": "https://github.com/jamesward/heroku-connect-phone-change",
+  "success_url": "/setup.html",
+  "addons": ["heroku-postgresql", "herokuconnect:demo"]
+}
