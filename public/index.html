@@ -21,6 +21,8 @@
                 var error = $("#error");
                 error.hide();
 
+                $("#message").hide();
+
                 var firstName = $("#firstName").val();
                 var lastName = $("#lastName").val();
                 var email = $("#email").val();
@@ -43,10 +45,16 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
-                            console.log(data);
+                            $("#firstName").val("");
+                            $("#lastName").val("");
+                            $("#email").val("");
+                            $("#phone").val("");
+                            $("#messageMessage").text("Record updated!");
+                            $("#message").show();
                         },
-                        failure: function(err) {
-                            console.log(err);
+                        error: function(err) {
+                            errorMessage.text(err.responseJSON.error);
+                            error.show();
                         }
                     })
                 }
@@ -59,7 +67,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Phone Number Changer</a>
+                <a class="navbar-brand" href="/">Phone Number Changer</a>
             </div>
         </div>
     </nav>
@@ -89,6 +97,10 @@
                     </div>
                 </div>
                 <div class="panel-footer">
+                    <div id="message" class="alert alert-info" role="alert" style="display: none;">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <span id="messageMessage"></span>
+                    </div>
                     <div id="error" class="alert alert-danger" role="alert" style="display: none;">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                         <span class="sr-only">Error:</span>

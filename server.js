@@ -9,8 +9,6 @@ app.set('port', process.env.PORT || 5000);
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-// todo: display setup page if Heroku Connect is not configured
-
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         conn.query(
@@ -19,7 +17,7 @@ app.post('/update', function(req, res) {
             function(err, result) {
                 done();
                 if (err != null || result.rowCount == 0) {
-                    res.json({error: 'The specified contact was not found.'});
+                    res.status(400).json({error: 'The specified contact was not found.'});
                 }
                 else {
                     res.json(result);
