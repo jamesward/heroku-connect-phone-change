@@ -23,8 +23,89 @@
 
     <div class="container">
         <div class="well">
-            <h4>Your application has been deployed!</h4>
-            Heroku Connect need to be setup so that this application will work.  For more details see: TODO
+            <h4>Your application has been deployed!  Additional setup is need for this app to work.</h4>
+        </div>
+
+        <div>
+            <h2>Step 1) Setup a Salesforce Developer Organization</h2>
+
+            <p>To get a development environment on Salesforce, <a href="https://developer.salesforce.com/signup">signup for a new Salesforce Developer Organization</a>.</p>
+
+            <p>After you have verified your email and logged into Salesforce, find the contact in the system named <code>Tim Barr</code>.</p>
+
+
+            <h2>Step 2) Provision the Heroku Postgres Add-on</h2>
+
+            <p>Now you are going to deploy an add-on. <a href="https://elements.heroku.com/addons">Heroku Add-ons</a> are cloud services — such as databases, monitoring services, caching services and queuing systems — which can be instantly provisioned for an application.  </p>
+
+            <p>In this step, you will provision a relational database by adding the <a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres</a> add-on.</p>
+
+            <ol>
+                <li>Visit the <a href="https://dashboard.heroku.com">Heroku Dashboard</a> and locate your application.</li>
+                <li>Click on the <strong>Resources</strong> tab.</li>
+                <li>In the search area within the Add-ons section, type <strong>Heroku Postgres</strong>, click Enter, and then click <strong>Provision</strong>.</li>
+            </ol>
+
+            <p>The simplicity and speed of this hides the complexity of what you should did.  With just a few clicks, you provisioned one of 150 add-on services, in this case a relational database.  The service is fully managed, is already running, and is now connected to your application.  </p>
+
+            <p>Heroku typically connects a provisioned add-on to an application by setting a configuration variable - available as a runtime environment variable within the application.</p>
+
+            <ol>
+                <li>In the Dashboard, select your application, and then click on the <strong>Settings</strong> tab.</li>
+                <li>In the <strong>Config Variables</strong> section, click <strong>Reveal Config Vars</strong> - you will notice the <code>DATABASE_URL</code> is now set.</li>
+            </ol>
+
+
+            <h2>Step 3) Provision the Heroku Connect Add-on</h2>
+
+            <p>Applications running on Heroku can use a number of different methods to integrate with Salesforce data including the <a href="http://www.salesforce.com/us/developer/docs/api_rest/">Salesforce REST APIs</a>.  An easier approach is to use the  <a href="https://www.heroku.com/connect">Heroku Connect</a> add-on.  </p>
+
+            <p>Heroku Connect provides bi-directional synchronization between Salesforce and Heroku Postgres, allowing you to unify and share the data in a Heroku Postgres SQL database with the contacts, accounts and other custom objects in a Salesforce database.  </p>
+
+            <p>In this section you will provision the Heroku Connect add-on, and sync your Salesforce Contacts to the Heroku Postgres database provisioned in the previous step.  </p>
+
+            <ol>
+                <li>Visit the <a href="https://dashboard.heroku.com">Heroku Dashboard</a> and locate your application.</li>
+                <li>Click on the <strong>Resources</strong> tab.</li>
+                <li>In search area within the Add-ons section, type <strong>Heroku Connect</strong>, click Enter, and then click <strong>Provision</strong>.</li>
+                <li>Click on the newly added <strong>Heroku Connect</strong> add-on to configure the syncing, and click <strong>Begin Setup</strong>.</li>
+            </ol>
+
+            <p>The Heroku Connect <strong>Provision Connection</strong> screen will appear: <br />
+                <img src="img/connect-provision.png" alt="Create Connection" title="" /></p>
+
+            <p>Heroku Connect automatically locates the Heroku Postgres database that you provisioned in the previous step.  </p>
+
+            <ol>
+                <li>Click <strong>Next</strong> and then <strong>Authorize</strong></li>
+            </ol>
+
+            <p>Now set up Heroku Connect:  </p>
+
+            <ol>
+                <li>Authorize Heroku Connect to access your Salesforce Org, logging into Salesforce if asked to:
+                    <img src="img/connect-oauth.jpg" alt="Salesforce OAuth" title="" /></li>
+                <li>Create a mappings between the Contact object in Salesforce, and a table in the Heroku Postgres database. <br />
+                    <ol>
+                        <li>Click <strong>Create Mapping</strong>.
+                            <img src="img/connect-create-mapping.jpg" alt="Create Mappings" title="" /></li>
+                        <li>Select the <strong>Contact</strong> object</li>
+                        <li>In the <strong>Database  Salesforce</strong> section, check the "Write to Salesforce any updates to your database" option.</li>
+                        <li>In the <strong>Mapped Fields</strong> section, check the <strong>Email</strong>, <strong>FirstName</strong>, <strong>HomePhone</strong>, <strong>LastName</strong>, <strong>MobilePhone</strong>, <strong>Name</strong>, and <strong>Phone</strong> fields. <br />
+                            <img src="img/connect-mappings.jpg" alt="Mapping Fields" title="" /></li>
+                        <li>Click <strong>Save</strong></li>
+                    </ol></li>
+                <li>Once you've completed the mapping setup the data will begin synchronizing
+                    <img src="img/connect-mapping-complete.jpg" alt="Mapping Complete" title="" /></li>
+            </ol>
+
+            <p>Your application, via Heroku Connect, is now syncing (bi-directionally) a subset of the Contact object in Salesforce with a new table in the Heroku Postgres database associated with your app.</p>
+
+
+            <h2>Step 4) Test Your App</h2>
+
+            <p>Open <a href="/" target="_blank">the Phone Number Changer page</a> and for the <strong>First Name</strong>, <strong>Last Name</strong>, and <strong>Email</strong> fields enter  <code>Tim</code>, <code>Barr</code>, and <code>barr_tim@grandhotels.com</code> while also specifying a phone number for <strong>Phone</strong>.  Then select <strong>Update Phone Number</strong> and verify that the contact record's phone number in Salesforce was updated.</p>
+
         </div>
     </div>
 </body>
