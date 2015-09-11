@@ -2,7 +2,7 @@
   "name": "Phone Change",
   "description": "Heroku Connect Sample App - Phone Change",
   "repository": "https://github.com/jamesward/heroku-connect-phone-change",
-  "success_url": "/setup.html"
+  "success_url": "/setup.html",
   "env": {
     "PGSSLMODE": {
       "description": "Require SSL for Postgres"
