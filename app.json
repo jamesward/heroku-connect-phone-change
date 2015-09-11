@@ -5,7 +5,7 @@
   "success_url": "/setup.html",
   "env": {
     "PGSSLMODE": {
-      "description": "Require SSL for Postgres"
+      "description": "Require SSL for Postgres",
       "value": "require"
     }
   }
