@@ -1,7 +1,7 @@
 {
-  "name": "phone-change",
+  "name": "email-change",
   "version": "0.0.0",
-  "description": "Heroku Connect Sample App - Phone Change",
+  "description": "Heroku Connect Sample App - Email Change",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
