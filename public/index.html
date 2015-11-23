@@ -25,8 +25,8 @@
 
                 var firstName = $("#firstName").val();
                 var lastName = $("#lastName").val();
-                var email = $("#email").val();
-                var phone = $("#phone").val();
+                var old email = $("#email").val();
+                var newEmail = $("#email").val();
 
                 if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || phone.length == 0) {
                     errorMessage.text("All of the fields are required.");
@@ -39,8 +39,8 @@
                         data: JSON.stringify({
                             firstName: firstName,
                             lastName: lastName,
-                            email: email,
-                            phone: phone
+                            old email: old email,
+                            newEmail: email
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
