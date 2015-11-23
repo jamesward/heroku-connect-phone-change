@@ -15,11 +15,11 @@ app.post('/update', function(req, res) {
         if (err) console.log(err);
         conn.query(
             'UPDATE salesforce.Contact SET Email = $1 WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
-            [req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+            [req.body.newEmail.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.oldEmail.trim()],
             function(err, result) {
                 if (err != null || result.rowCount == 0) {
                   conn.query('INSERT INTO salesforce.Contact (FirstName, LastName, Email) VALUES ($1, $2, $3)',
-                  [req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+                  [req.body.firstName.trim(), req.body.lastName.trim(), req.body.newEmail.trim()],
                   function(err, result) {
                     done();
                     if (err) {
