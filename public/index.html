@@ -14,7 +14,7 @@
     </style>
     <script>
         $(function() {
-            $("#phoneChangerForm").submit(function(event) {
+            $("#emailChangerForm").submit(function(event) {
                 event.preventDefault();
 
                 var errorMessage = $("#errorMessage");
@@ -25,10 +25,10 @@
 
                 var firstName = $("#firstName").val();
                 var lastName = $("#lastName").val();
-                var old email = $("#email").val();
+                var oldEmail = $("#email").val();
                 var newEmail = $("#email").val();
 
-                if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || phone.length == 0) {
+                if (firstName.length == 0 || lastName.length == 0 || oldEmail.length == 0 || newEmail.length == 0) {
                     errorMessage.text("All of the fields are required.");
                     error.show();
                 }
@@ -39,7 +39,7 @@
                         data: JSON.stringify({
                             firstName: firstName,
                             lastName: lastName,
-                            old email: old email,
+                            oldEmail: email,
                             newEmail: email
                         }),
                         contentType: "application/json; charset=utf-8",
@@ -48,7 +48,6 @@
                             $("#firstName").val("");
                             $("#lastName").val("");
                             $("#email").val("");
-                            $("#phone").val("");
                             $("#messageMessage").text("Record updated!");
                             $("#message").show();
                         },
@@ -67,16 +66,16 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Phone Number Changer</a>
+                <a class="navbar-brand" href="/">Email Changer</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <form id="phoneChangerForm" action="/update" method="post" style="width: 400px">
+        <form id="emailChangerForm" action="/update" method="post" style="width: 400px">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Update Your Phone Number</h3>
+                    <h3 class="panel-title">Update Your Emailr</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -88,12 +87,12 @@
                         <input type="text" class="form-control" id="lastName" placeholder="For verification" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="For verification" required>
+                        <label for="old email">Email</label>
+                        <input type="email" class="form-control" id="oldEmail" placeholder="For verification" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="New Phone Number" required>
+                        <label for="new email">Phone</label>
+                        <input type="email" class="form-control" id="newEmail" placeholder="New Email" required>
                     </div>
                 </div>
                 <div class="panel-footer">
